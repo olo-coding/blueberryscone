@@ -1,0 +1,13 @@
+{
+  "name": "blueberryscone",
+  "version": "0.0.0",
+  "homepage": "https://github.com/olo-coding/blueberryscone",
+  "authors": [
+    "lazybricker <lazybricker@gmail.com>"
+  ],
+  "license": "apache",
+  "private": true,
+  "devDependencies": {
+    "jquery": "~2.1.3"
+  }
+}
