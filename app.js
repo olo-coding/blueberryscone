@@ -9,8 +9,15 @@ var bodyParser = require('body-parser');
 var app = express();
 
 //
+global.config = require('./config.js');
+
+//
 app.set('view engine', 'jade');
 app.set('views', './views');
+
+//
+var models = require('./models');
+require('./controllers')(app, bodyParser, models);
 
 //
 http.createServer(app).listen(3000, function(){
