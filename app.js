@@ -15,9 +15,11 @@ global.config = require('./config.js');
 app.set('view engine', 'jade');
 app.set('views', './views');
 
+app.use(express.static('./public'));
+
 //
-var models = require('./models');
-require('./controllers')(app, bodyParser, models);
+//var models = require('./models');
+//require('./controllers')(app, bodyParser, models);
 
 //
 http.createServer(app).listen(3000, function(){
