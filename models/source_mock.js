@@ -34,13 +34,20 @@ SourceTable.prototype.hasSource = function(name) {
 }
 
 SourceTable.prototype.getSource = function(name) {
-  return JSON.stringify(this.sourceMap.get(name));
-}
-
-SourceTable.prototype.getSourceJson = function(name) {
   return this.sourceMap.get(name);
 }
 
-SourceTable.prototype.getEntityJson = function(entity) {
+SourceTable.prototype.getEntity = function(entity) {
   return this.entityMap.get(entity);
+}
+
+SourceTable.prototype.get = function(name) {
+  var source = this.getSource(name);
+  var entityArray = [];
+  var count = 0;
+  source['entities'].forEach(function(entity) {
+    entityArray.push(this.getEntity(entity));
+  }, this);
+  source['references'] = entityArray;
+  return source;
 }
