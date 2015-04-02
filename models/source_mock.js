@@ -2,7 +2,7 @@ HashMap = require('hashmap').HashMap
 
 module.exports = function () {
   return new SourceTable();
-}
+};
 
 var sampleSource = {
   file:'sample',
@@ -39,6 +39,16 @@ SourceTable.prototype.getSource = function(name) {
 
 SourceTable.prototype.getEntity = function(entity) {
   return this.entityMap.get(entity);
+}
+
+/* by Rachel */
+SourceTable.prototype.getEntitySize = function() {
+  return this.entityMap.keys().length;
+}
+
+/* by Rachel */
+SourceTable.prototype.getEntityMap = function() {
+  return this.entityMap;
 }
 
 SourceTable.prototype.get = function(name) {
