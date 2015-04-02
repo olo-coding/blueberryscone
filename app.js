@@ -4,7 +4,6 @@
 //
 var http = require('http');
 var express = require('express');
-var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var app = express();
 
@@ -17,9 +16,9 @@ app.set('views', './views');
 
 app.use(express.static('./public'));
 
-//
-//var models = require('./models');
-//require('./controllers')(app, bodyParser, models);
+
+var models = require('./models');
+require('./controllers')(app, bodyParser, models);
 
 //
 http.createServer(app).listen(3000, function(){
@@ -30,3 +29,7 @@ http.createServer(app).listen(3000, function(){
 app.get('/', function(req, res){
 	res.render('index');
 });
+
+var sources = require('./controllers/source');
+app.get('/sources', sources.show);
+

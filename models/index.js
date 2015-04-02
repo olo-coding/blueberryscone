@@ -9,7 +9,7 @@ var sequelize_options = {
       dialect: 'mysql',
       host: global.config.blueberryscone_db.host,
       port: 3306,
-      pool: { 
+      pool: {
         maxConnections: global.config.blueberryscone_db.max_connections
       },
       dialectOptions: {
