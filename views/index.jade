@@ -1,10 +1,14 @@
 doctype html
 
 html
-	head
-		title Bluberryscone TEST
+  head
+    title Bluberryscone TEST
+    link(href="components/jqtree/jqtree.css", rel="stylesheet", type="text/css")
 
-	body
-		h1 Hello, Geek!
+  body
+    h1 Hello, Geek!
+    #treeview
 
-  script(type="text/javascript", src="/js/index.js")
+  script(type="text/javascript", src="components/jquery/dist/jquery.js")
+  script(type="text/javascript", src="components/jqtree/tree.jquery.js")
+  script(type="text/javascript", src="js/index.js")
