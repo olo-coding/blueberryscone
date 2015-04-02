@@ -11,13 +11,16 @@ describe('Test source mock', function() {
   it ('dont have source', function() {
     test.assert(!mock.hasSource('aaa'));
   });
+
   it ('have source', function() {
     test.assert(mock.hasSource('sample'));
   });
+
   it ('get source json object', function() {
     var json = mock.getSource('sample');
     test.string(JSON.stringify(json)).is(sampleSource);
   });
+
   it ('get entity', function() {
     var json = mock.getSource('sample');
     var entities = json['entities'];
@@ -25,17 +28,33 @@ describe('Test source mock', function() {
     test.string(entities[1]).is('String');
     test.string(entities[2]).is('println');
   });
+
   it ('get entity url', function() {
     var json = mock.getSource('sample');
     var entities = json['entities'];
     var arrayEntity = mock.getEntity(entities[0]);
     test.string(arrayEntity['url']).is('http://www.scala-lang.org/api/current/#scala.Array');
   });
+
   it ('get all json', function() {
     var json = mock.get('sample');
     test.string(JSON.stringify(json)).is(sampleAll);
   });
+
   it ('no reference', function() {
     var json = mock.get('test');
     json['references']
+  });
+
+  it ('get entity map', function() {
+    var entities = mock.getEntityMap();
+    test.assert(entities.has('Array'));
+    test.assert(entities.has('String'));
+    test.assert(entities.has('println'));
+  });  
+
+  it ('get entities size', function() {
+    var size = mock.getEntitySize();
+    test.assert(size===3);
+  });
 });

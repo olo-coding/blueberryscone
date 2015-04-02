@@ -2,7 +2,7 @@ HashMap = require('hashmap').HashMap
 
 module.exports = function () {
   return new SourceTable();
-}
+};
 
 var sampleSource = {
   file:'sample',
@@ -27,34 +27,31 @@ var printlnEntity = {
 };
 
 function SourceTable() {
-  this.sourceMap = new HashMap();
-  this.sourceMap.set("sample", sampleSource);
-  this.sourceMap.set("test", testSource);
-  this.entityMap = new HashMap();
-  this.entityMap.set("Array", arrayEntity);
-  this.entityMap.set("String", stringEntity);
-  this.entityMap.set("println", printlnEntity);
+  this.sourceMap_ = new HashMap();
+  this.sourceMap_.set("sample", sampleSource);
+  this.sourceMap_.set("test", testSource);
+  this.entityMap_ = new HashMap();
+  this.entityMap_.set("Array", arrayEntity);
+  this.entityMap_.set("String", stringEntity);
+  this.entityMap_.set("println", printlnEntity);
+}
+
+function copyObj(obj) {
+  return JSON.parse(JSON.stringify(obj));
 }
 
 SourceTable.prototype.hasSource = function(name) {
-  return this.sourceMap.has(name);
+  return this.sourceMap_.has(name);
 }
 
 SourceTable.prototype.getSource = function(name) {
-  return this.sourceMap.get(name);
+  return copyObj(this.sourceMap_.get(name));
 }
 
 SourceTable.prototype.getEntity = function(entity) {
-  return this.entityMap.get(entity);
+  return copyObj(this.entityMap_.get(entity));
 }
 
-SourceTable.prototype.get = function(name) {
-  var source = this.getSource(name);
-  var entityArray = [];
-  var count = 0;
-  source['entities'].forEach(function(entity) {
-    entityArray.push(this.getEntity(entity));
-  }, this);
-  source['references'] = entityArray;
-  return source;
+SourceTable.prototype.getEntitySize = function() {
+  return this.entityMap_.keys().length;
 }
