@@ -35,4 +35,7 @@ describe('Test source mock', function() {
     var json = mock.get('sample');
     test.string(JSON.stringify(json)).is(sampleAll);
   });
+  it ('no reference', function() {
+    var json = mock.get('test');
+    json['references']
 });

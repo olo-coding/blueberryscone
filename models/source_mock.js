@@ -10,6 +10,12 @@ var sampleSource = {
   entities:['Array','String','println']
 };
 
+var testSource = {
+  file:'test',
+  source:'test source',
+  entities:['Array','Unknown']
+};
+
 var arrayEntity = {
   url:'http://www.scala-lang.org/api/current/#scala.Array'
 };
@@ -23,6 +29,7 @@ var printlnEntity = {
 function SourceTable() {
   this.sourceMap = new HashMap();
   this.sourceMap.set("sample", sampleSource);
+  this.sourceMap.set("test", testSource);
   this.entityMap = new HashMap();
   this.entityMap.set("Array", arrayEntity);
   this.entityMap.set("String", stringEntity);
