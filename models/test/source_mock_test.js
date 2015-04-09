@@ -2,27 +2,27 @@ var test = require('unit.js');
 
 var source = require('../source_mock');
 
-var mock = source();
+var sourceMock = source();
 
 var sampleSource = "{\"file\":\"sample\",\"source\":\"object HelloWorld { def main(args: Array[String]) { println(\\\"Hello, world!\\\") } }\",\"entities\":[\"Array\",\"String\",\"println\"]}";
 var sampleAll = "{\"file\":\"sample\",\"source\":\"object HelloWorld { def main(args: Array[String]) { println(\\\"Hello, world!\\\") } }\",\"entities\":[\"Array\",\"String\",\"println\"],\"references\":[{\"url\":\"http://www.scala-lang.org/api/current/#scala.Array\"},{\"url\":\"http://www.scala-lang.org/api/current/#scala.Predef$\"},{\"url\":\"http://www.scala-lang.org/api/current/#scala.Console$\"}]}";
 
-describe('Test source mock', function() {
+describe('Test sourceMock', function() {
   it ('dont have source', function() {
-    test.assert(!mock.hasSource('aaa'));
+    test.assert(!sourceMock.hasSource('aaa'));
   });
 
   it ('have source', function() {
-    test.assert(mock.hasSource('sample'));
+    test.assert(sourceMock.hasSource('sample'));
   });
 
   it ('get source json object', function() {
-    var json = mock.getSource('sample');
+    var json = sourceMock.getSource('sample');
     test.string(JSON.stringify(json)).is(sampleSource);
   });
 
   it ('get entity', function() {
-    var json = mock.getSource('sample');
+    var json = sourceMock.getSource('sample');
     var entities = json['entities'];
     test.string(entities[0]).is('Array');
     test.string(entities[1]).is('String');
@@ -30,31 +30,14 @@ describe('Test source mock', function() {
   });
 
   it ('get entity url', function() {
-    var json = mock.getSource('sample');
+    var json = sourceMock.getSource('sample');
     var entities = json['entities'];
-    var arrayEntity = mock.getEntity(entities[0]);
+    var arrayEntity = sourceMock.getEntity(entities[0]);
     test.string(arrayEntity['url']).is('http://www.scala-lang.org/api/current/#scala.Array');
   });
 
-  it ('get all json', function() {
-    var json = mock.get('sample');
-    test.string(JSON.stringify(json)).is(sampleAll);
-  });
-
-  it ('no reference', function() {
-    var json = mock.get('test');
-    json['references']
-  });
-
-  it ('get entity map', function() {
-    var entities = mock.getEntityMap();
-    test.assert(entities.has('Array'));
-    test.assert(entities.has('String'));
-    test.assert(entities.has('println'));
-  });  
-
   it ('get entities size', function() {
-    var size = mock.getEntitySize();
+    var size = sourceMock.getEntitySize();
     test.assert(size===3);
   });
 });
