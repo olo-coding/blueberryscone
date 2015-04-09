@@ -18,10 +18,14 @@ http.createServer(app).listen(3000, function(){
 	console.log('App started');
 });
 
+var sourceMock = require('./models/source_mock');
+var sourceList = sourceMock().getSourceList();
 app.get('/', function(req, res){
-	res.render('index');
+  res.render('index', {
+    list: sourceList || [],
+  });
 });
 
-var sources = require('./controllers/source');
-app.get('/sources', sources.show);
-
+app.get('/sources', function (req, res) {
+  res.send(sourceList);
+});
