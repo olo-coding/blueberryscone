@@ -55,3 +55,7 @@ SourceTable.prototype.getEntity = function(entity) {
 SourceTable.prototype.getEntitySize = function() {
   return this.entityMap_.keys().length;
 }
+
+SourceTable.prototype.getSourceList = function() {
+  return this.sourceMap_.keys();
+}

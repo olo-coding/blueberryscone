@@ -40,4 +40,10 @@ describe('Test sourceMock', function() {
     var size = sourceMock.getEntitySize();
     test.assert(size===3);
   });
+
+  it ('get source list', function() {
+    var sourceList = sourceMock.getSourceList();
+    test.string(sourceList[0]).is('sample');
+    test.string(sourceList[1]).is('test');
+  });
 });
