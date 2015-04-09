@@ -15,8 +15,10 @@ SourceBuilder.prototype.build = function(name) {
   var count = 0;
   source['entities'].forEach(function(entityName) {
     var entity = this.source_.getEntity(entityName);
-    entity.name = entityName;
-    entityArray.push(entity);
+    if (entity) {
+      entity.name = entityName;
+      entityArray.push(entity);
+    }
   }, this);
   source['references'] = entityArray;
   return source;
