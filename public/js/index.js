@@ -1,22 +1,7 @@
-(function () {
-  // sample data
-  var data = [
-    {
-        label: 'node1',
-        children: [
-            { label: 'child1' },
-            { label: 'child2' }
-        ]
-    },
-    {
-        label: 'node2',
-        children: [
-            { label: 'child3' }
-        ]
-    }
-  ];
+$('#load-source').click(function() {
+  var url = '/source/' + $(this).attr('data-url');
 
-  $('#treeview').tree({
-    data: data
+  $.getJSON(url, function(data) {
+    console.log(data.source);
   });
-})();
+});

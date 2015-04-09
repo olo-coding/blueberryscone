@@ -29,7 +29,6 @@ var printlnEntity = {
 function SourceTable() {
   this.sourceMap_ = new HashMap();
   this.sourceMap_.set("sample", sampleSource);
-  this.sourceMap_.set("test", testSource);
   this.entityMap_ = new HashMap();
   this.entityMap_.set("Array", arrayEntity);
   this.entityMap_.set("String", stringEntity);

@@ -44,6 +44,5 @@ describe('Test sourceMock', function() {
   it ('get source list', function() {
     var sourceList = sourceMock.getSourceList();
     test.string(sourceList[0]).is('sample');
-    test.string(sourceList[1]).is('test');
   });
 });
