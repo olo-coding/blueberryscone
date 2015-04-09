@@ -1,7 +1,7 @@
 var supertest = require('supertest');
 var request = supertest('localhost:3000');
 
-describe('TODO API', function () {
+describe('Source API', function () {
   it('GET /', function (done) {
     request
       .get('/')
@@ -11,4 +11,8 @@ describe('TODO API', function () {
         done();
       });
   });
+
+  it('GET /sources', function (done) {
+
+  })
 })
